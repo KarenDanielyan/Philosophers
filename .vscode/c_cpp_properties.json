@@ -3,7 +3,7 @@
         {
             "name": "linux-gcc-x64",
             "includePath": [
-                "${workspaceFolder}/philo/include",
+                "${workspaceFolder}/philo/include"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c99",
