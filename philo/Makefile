@@ -14,6 +14,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/%.c,\
 				ft_atol.c \
 				parse_2.c \
 				parse.c \
+				init.c \
 				main.c)
 
 OBJS		=	$(patsubst $(SRC)/%.c, $(BUILD)/%.o, $(SRCS))
@@ -22,7 +23,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g3 -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS		=	-g -Wall -Wextra -Werror -fsanitize=address
 
 LFLAGS		=	
 

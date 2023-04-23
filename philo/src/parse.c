@@ -6,16 +6,20 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:21:08 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/22 21:31:34 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/24 01:31:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-# define M2BIG "Argument bigger than INT_MAX.\n"
+# define MINARG "Invalid Number of Arguments.\n"
+# define M2BIG "Argument does not fit inside an int.\n"
+# define MNEG "You can't go back in time -_-\n"
 # define MNAI "Non-Integer Argument\n"
+# define MINARG_LEN 30
 # define M2BIG_LEN 30
-# define MNAI_LEN 21
+# define MNEG_LEN 31
+# define MNAI_LEN 22
 
 static int	is_number(const char *s)
 {
@@ -45,31 +49,47 @@ static t_args	fill_args(long *arr, int len)
 	return (args);
 }
 
+static void	arg_fill(long *arr, int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac)
+	{
+		if (!is_number(av[i]))
+		{
+			write(STDERR_FILENO, MNAI, MNAI_LEN);
+			exit(EXIT_FAILURE);
+		}
+		arr[i - 1] = ft_atol(av[i]);
+		if (!check_number(av[i]) || arr[i - 1] > INT32_MAX)
+		{
+			write(STDERR_FILENO, M2BIG, M2BIG_LEN);
+			exit(EXIT_FAILURE);
+		}
+		if (arr[i - 1] < 0)
+		{
+			write(STDERR_FILENO, MNEG, MNEG_LEN);
+			exit(EXIT_FAILURE);
+		}
+		i ++;
+	}
+}
+
 t_args	parse(int ac, char **av)
 {
-	int		i;
 	long	*arr;
+	t_args	args;
 
 	arr = NULL;
-	if (ac == 5 || ac == 6)
+	if (ac != 5 && ac != 6)
 	{
-		arr = (long *)malloc((ac - 1) * sizeof(long));
-		i = 1;
-		while (i < ac)
-		{
-			if (!is_number(av[i]))
-			{
-				write(STDERR_FILENO, MNAI, MNAI_LEN);
-				exit(EXIT_FAILURE);
-			}
-			arr[i] = ft_atol(av[i]);
-			if (check_number(av[i]) || arr[i] < 0 || arr[i] > INT32_MAX)
-			{
-				write(STDERR_FILENO, M2BIG, M2BIG_LEN);
-				exit(EXIT_FAILURE);
-			}
-			i ++;
-		}
+		write(STDERR_FILENO, MINARG, MINARG_LEN);
+		exit(EXIT_FAILURE);
 	}
-	return (fill_args(arr, (ac - 1)));
+	arr = (long *)malloc((ac - 1) * sizeof(long));
+	arg_fill(arr, ac, av);
+	args = fill_args(arr, (ac - 1));
+	free(arr);
+	return (args);
 }
