@@ -6,20 +6,24 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:21:08 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/24 01:31:14 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:17:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-# define MINARG "Invalid Number of Arguments.\n"
-# define M2BIG "Argument does not fit inside an int.\n"
-# define MNEG "You can't go back in time -_-\n"
-# define MNAI "Non-Integer Argument\n"
-# define MINARG_LEN 30
-# define M2BIG_LEN 30
-# define MNEG_LEN 31
-# define MNAI_LEN 22
+#define MINARG "Invalid Number of Arguments.\n"
+#define M2BIG "Argument does not fit inside an int.\n"
+#define MNEG "You can't go back in time -_-\n"
+#define MPHIL "WTFYM Negative Philos???\n"
+#define MTHUP "Philos cant throw up!!\n"
+#define MNAI "Non-Integer Argument\n"
+#define MINARG_LEN 30
+#define M2BIG_LEN 30
+#define MNEG_LEN 31
+#define MNAI_LEN 22
+#define MPHIL_LEN 25
+#define MTHUP_LEN 23
 
 static int	is_number(const char *s)
 {
@@ -69,7 +73,12 @@ static void	arg_fill(long *arr, int ac, char **av)
 		}
 		if (arr[i - 1] < 0)
 		{
-			write(STDERR_FILENO, MNEG, MNEG_LEN);
+			if (i == 1)
+				write(STDERR_FILENO, MPHIL, MPHIL_LEN);
+			else if (i > 1 && i < ac -1)
+				write(STDERR_FILENO, MNEG, MNEG_LEN);
+			else
+				write(STDERR_FILENO, MTHUP, MTHUP_LEN);
 			exit(EXIT_FAILURE);
 		}
 		i ++;

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:22:56 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/24 01:16:15 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:08:51 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,15 @@ void	new_data(t_data *data, t_args args)
 			* sizeof(pthread_mutex_t));
 	data->philos = (t_philo *)malloc(args.philo_num
 			* sizeof(t_philo));
-	FOREACH(m, data->forks, args.philo_num)
-		pthread_mutex_init(m, NULL);
-	FOREACH(p, data->philos,args.philo_num)
+	m = data->forks;
+	while (m < (data->forks + args.philo_num))
+		pthread_mutex_init(m++, NULL);
+	p = data->philos;
+	while (p < data->philos + args.philo_num)
 	{
 		new_philo(p, (p - (data->philos)) / sizeof(t_philo),
 			data->forks, args);
+		p ++;
 	}
 	data->msg_q = NULL;
 }
