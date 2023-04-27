@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 13:21:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/27 16:13:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:21:14 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_queue	*queue_before_last(t_queue *head)
 	return (head);
 }
 
-static int		queue_size(t_queue *head)
+static int	queue_size(t_queue *head)
 {
 	int	i;
 
