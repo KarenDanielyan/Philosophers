@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:22:56 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/27 13:08:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:26:43 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	new_data(t_data *data, t_args args)
 	m = data->forks;
 	while (m < (data->forks + args.philo_num))
 		pthread_mutex_init(m++, NULL);
+	pthread_mutex_init(&data->q_mux, NULL);
 	p = data->philos;
 	while (p < data->philos + args.philo_num)
 	{
