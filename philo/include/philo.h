@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:05:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/28 21:09:44 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/28 22:25:19 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	fire(t_queue **head);
 
 /* Utils*/
 long	ft_atol(const char *str);
+int		is_ended(t_data *data);
 void	get_time(t_time *t);
 
 #endif

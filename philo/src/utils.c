@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:47:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/28 21:05:09 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/28 22:36:44 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	get_time(t_time *t)
 	}
 	exec_c ++;
 }
-
 
 static short	is_num(const char *chr)
 {
@@ -82,3 +81,15 @@ long	ft_atol(const char *str)
 	}
 	return (sign * num);
 }
+
+// void	ft_usleep(long long us, t_data *data)
+// {
+// 	t_time	t;
+
+// 	get_time(&t);
+
+// 	while (!is_ended(data))
+// 	{
+// 		if
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:21:08 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/28 21:07:13 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:11:00 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	is_number(const char *s)
 static t_args	fill_args(long *arr, int len)
 {
 	t_args	args;
-	
+
 	args.philo_num = (int)arr[0];
 	args.time_to_die = (int)arr[1];
 	args.time_to_eat = (int)arr[2];
