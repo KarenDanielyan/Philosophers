@@ -11,7 +11,7 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h,\
 				philo.h) Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/%.c,\
-				ft_atol.c queue.c \
+				queue.c utils.c \
 				parse_2.c parse.c \
 				init.c \
 				main.c)

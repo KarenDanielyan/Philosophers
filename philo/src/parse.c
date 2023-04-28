@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:21:08 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/27 13:17:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:07:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #define MINARG "Invalid Number of Arguments.\n"
 #define M2BIG "Argument does not fit inside an int.\n"
 #define MNEG "You can't go back in time -_-\n"
-#define MPHIL "WTFYM Negative Philos???\n"
+#define MPHIL "WDYM Negative Philos???\n"
 #define MTHUP "Philos cant throw up!!\n"
 #define MNAI "Non-Integer Argument\n"
 #define MINARG_LEN 30
-#define M2BIG_LEN 30
+#define M2BIG_LEN 37
 #define MNEG_LEN 31
 #define MNAI_LEN 22
 #define MPHIL_LEN 25
@@ -53,6 +53,31 @@ static t_args	fill_args(long *arr, int len)
 	return (args);
 }
 
+static void	pick_err_msg(long *arr, int i, char **av, int ac)
+{
+	if (!is_number(av[i]))
+	{
+		write(STDERR_FILENO, MNAI, MNAI_LEN);
+		exit(EXIT_FAILURE);
+	}
+	arr[i - 1] = ft_atol(av[i]);
+	if (!check_number(av[i]) || arr[i - 1] > INT32_MAX)
+	{
+		write(STDERR_FILENO, M2BIG, M2BIG_LEN);
+		exit(EXIT_FAILURE);
+	}
+	if (arr[i - 1] < 0)
+	{
+		if (i == 1)
+			write(STDERR_FILENO, MPHIL, MPHIL_LEN);
+		else if (i > 1 && i < ac -1)
+			write(STDERR_FILENO, MNEG, MNEG_LEN);
+		else
+			write(STDERR_FILENO, MTHUP, MTHUP_LEN);
+		exit(EXIT_FAILURE);
+	}
+}
+
 static void	arg_fill(long *arr, int ac, char **av)
 {
 	int	i;
@@ -60,27 +85,7 @@ static void	arg_fill(long *arr, int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		if (!is_number(av[i]))
-		{
-			write(STDERR_FILENO, MNAI, MNAI_LEN);
-			exit(EXIT_FAILURE);
-		}
-		arr[i - 1] = ft_atol(av[i]);
-		if (!check_number(av[i]) || arr[i - 1] > INT32_MAX)
-		{
-			write(STDERR_FILENO, M2BIG, M2BIG_LEN);
-			exit(EXIT_FAILURE);
-		}
-		if (arr[i - 1] < 0)
-		{
-			if (i == 1)
-				write(STDERR_FILENO, MPHIL, MPHIL_LEN);
-			else if (i > 1 && i < ac -1)
-				write(STDERR_FILENO, MNEG, MNEG_LEN);
-			else
-				write(STDERR_FILENO, MTHUP, MTHUP_LEN);
-			exit(EXIT_FAILURE);
-		}
+		pick_err_msg(arr, i, av, ac);
 		i ++;
 	}
 }
