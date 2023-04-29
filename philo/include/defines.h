@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 19:32:42 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 22:18:23 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct s_args
 
 typedef enum e_state
 {
-	DEAD,
-	EATING,
-	PICKING,
-	SLEEPING,
-	THINKING
+	DEAD = 0,
+	EATING = 1,
+	PICKING = 2,
+	SLEEPING = 3,
+	THINKING = 4
 }	t_state;
 
 typedef struct s_philo

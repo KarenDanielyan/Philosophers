@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 14:57:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 19:34:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 22:20:57 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ char	*pick_msg(int stat)
  */
 void	post(t_data *data, int code)
 {
+	long	t;
+
+	t = get_time(0);
 	if (!is_ended(data))
 	{
 		pthread_mutex_lock(&(data->p_mux));
-		printf("%li %d %s\n", get_time(), (code / 10), pick_msg(code % 10));
+		printf("%li %d %s\n", t, (code / 10), pick_msg(code % 10));
 		pthread_mutex_unlock(&(data->p_mux));
 	}
 }

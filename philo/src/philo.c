@@ -6,11 +6,12 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:13:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 19:33:27 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 22:43:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <errno.h>
 
 /*
 *	Return Value: 0 on NO and 1 on YES.
@@ -21,7 +22,7 @@ int	is_ended(t_data *data)
 
 	pthread_mutex_lock(&data->end_mux);
 	rv = data->is_ended;
-	pthread_mutex_lock(&data->end_mux);
+	pthread_mutex_unlock(&data->end_mux);
 	return (rv);
 }
 /**
@@ -59,7 +60,7 @@ static void philo_eat(t_philo *philo)
 		pick_forks(data, philo->numb, philo->right_f, philo->left_f);
 	pthread_mutex_lock(&philo->e_mux);
 	post(data, (philo->numb * 10 + EATING));
-	philo->last_meal = get_time();
+	philo->last_meal = get_time(0);
 	pthread_mutex_unlock(&philo->e_mux);
 	ft_msleep(philo->to_eat, data);
 	if (data->nb_2eat != -1)
@@ -76,14 +77,15 @@ void	*philo(void *p)
 {
 	t_philo	*philo;
 
-	((t_philo *)p)->last_meal = get_time();
+	pthread_mutex_lock(&((t_philo *)p)->e_mux);
+	((t_philo *)p)->last_meal = get_time(0);
+	pthread_mutex_unlock(&((t_philo *)p)->e_mux);
 	philo = (t_philo *)p;
-	if (philo->numb % 2)
+	if (philo->numb % 2 == 0)
 		usleep(1000);
 	while (!is_ended(philo->data))
 	{
 		philo_eat(philo);
-		ft_msleep(philo->to_eat, philo->data);
 		post(philo->data, (philo->numb * 10 + SLEEPING));
 		ft_msleep(philo->to_sleep, philo->data);
 		post(philo->data, (philo->numb * 10 + THINKING));
