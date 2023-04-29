@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:22:56 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/28 22:16:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:21:50 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	new_philo(t_philo *p, int num, pthread_mutex_t *forks, t_args args)
 {
-	p->is_dead = 0;
 	p->numb = num;
 	p->ate_c = 0;
 	p->to_die = args.time_to_die;
@@ -44,7 +43,7 @@ void	new_data(t_data *data, t_args args)
 	m = data->forks;
 	while (m < (data->forks + args.philo_num))
 		pthread_mutex_init(m++, NULL);
-	pthread_mutex_init(&data->q_mux, NULL);
+	pthread_mutex_init(&data->p_mux, NULL);
 	pthread_mutex_init(&data->end_mux, NULL);
 	p = data->philos;
 	while (p < data->philos + args.philo_num)
@@ -53,5 +52,4 @@ void	new_data(t_data *data, t_args args)
 			data->forks, args);
 		p ++;
 	}
-	data->msg_q = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:13:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/28 22:35:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:23:10 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	is_ended(t_data *data)
 {
 	int	rv;
 
-	pthread_mutex_lock(&philo->data->end_mux);
-	rv = philo->data->is_ended;
-	pthread_mutex_lock(&philo->data->end_mux);
+	pthread_mutex_lock(&data->end_mux);
+	rv = data->is_ended;
+	pthread_mutex_lock(&data->end_mux);
 	return (rv);
 }
 
@@ -29,7 +29,7 @@ void	philo(void *p)
 {
 	t_philo	*philo;
 
-	get_time(&((t_philo *)p)->last_meal);
+	((t_philo *)p)->last_meal = get_time();
 	philo = (t_philo *)p;
 	if (philo->numb % 2)
 		usleep(1000);

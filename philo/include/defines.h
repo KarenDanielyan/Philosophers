@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/28 22:16:30 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:22:12 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@ typedef enum e_state
 	THINKING
 }	t_state;
 
-typedef struct s_queue
-{
-	long			ms;
-	int				msg_code;
-	struct s_queue	*next;
-}	t_queue;
-
 typedef struct s_philo
 {
 	int				numb;
@@ -54,12 +47,11 @@ typedef struct s_philo
 	int				to_die;
 	int				to_eat;
 	int				ate_c;
-	t_time			last_meal;
+	long long		last_meal;
 	pthread_mutex_t	*q_mux;
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
-	t_queue			**msg_q;
-	t_data			*data;
+	struct s_data	*data;
 }	t_philo;
 
 typedef struct s_data
@@ -67,12 +59,11 @@ typedef struct s_data
 	int				is_ended;
 	int				nb_philo;
 	int				nb_2eat;
-	pthread_mutex_t	q_mux;
+	pthread_mutex_t	p_mux;
 	pthread_mutex_t	end_mux;
 	pthread_mutex_t	*forks;
 	pthread_t		*threads;
 	t_philo			*philos;
-	t_queue			*msg_q;
 }	t_data;
 
 #endif

@@ -11,9 +11,9 @@ DEP			=	$(patsubst %.h, $(INCLUDE)/%.h,\
 				philo.h) Makefile
 
 SRCS		=	$(patsubst %.c, $(SRC)/%.c,\
-				queue.c utils.c \
-				parse_2.c parse.c \
-				init.c \
+				utils.c utils_2.c \
+				parse.c parse_2.c \
+				init.c philo.c \
 				main.c)
 
 OBJS		=	$(patsubst $(SRC)/%.c, $(BUILD)/%.o, $(SRCS))
