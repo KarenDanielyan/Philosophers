@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 16:22:12 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:32:42 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,24 @@
 # define EATING_MSG "is eating"
 # define SLEEPING_MSG "is sleeping"
 # define THINKING_MSG "is thinking"
+# define FORK_MSG "has taken a fork"
 
 typedef struct timeval t_time;
 
 typedef struct s_args
 {
-	int	philo_num;
-	int	time_to_die;
-	int	time_to_sleep;
-	int	time_to_eat;
-	int	must_eat_count;
+	int			philo_num;
+	int			must_eat_count;
+	long	time_to_die;
+	long	time_to_sleep;
+	long	time_to_eat;
 }	t_args;
 
 typedef enum e_state
 {
 	DEAD,
 	EATING,
+	PICKING,
 	SLEEPING,
 	THINKING
 }	t_state;
@@ -43,12 +45,13 @@ typedef enum e_state
 typedef struct s_philo
 {
 	int				numb;
-	int				to_sleep;
-	int				to_die;
-	int				to_eat;
 	int				ate_c;
-	long long		last_meal;
-	pthread_mutex_t	*q_mux;
+	long		to_sleep;
+	long		to_die;
+	long		to_eat;
+	long		last_meal;
+	pthread_mutex_t	e_mux;
+	pthread_mutex_t	c_mux;
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
 	struct s_data	*data;

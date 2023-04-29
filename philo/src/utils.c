@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:47:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 16:21:23 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:32:42 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define OFFSET '0'
 
-long long	get_time(void)
+long	get_time(void)
 {
 	static int		exec_c;
 	static t_time	init;
@@ -26,7 +26,7 @@ long long	get_time(void)
 	t.tv_sec = t.tv_sec - init.tv_sec;
 	t.tv_usec = t.tv_usec - init.tv_usec;
 	exec_c ++;
-	return ((long long)((t.tv_sec * 1000) + (t.tv_sec / 1000)));
+	return ((long)((t.tv_sec * 1000) + (t.tv_sec / 1000)));
 }
 
 static short	is_num(const char *chr)
@@ -80,18 +80,23 @@ long	ft_atol(const char *str)
 	}
 	return (sign * num);
 }
-
-void	ft_usleep(long long us, t_data *data)
+/**
+ * @brief		Sleeps given amount of miliseconds.
+ * 
+ * @param ms	miliseconds
+ * @param data	Simulation data structure.
+ */
+void	ft_msleep(long ms, t_data *data)
 {
-	long long	init;
-	long long	elapsed;
+	long	init;
+	long	elapsed;
 
 	init = get_time();
 	elapsed = 0;
 	while (!is_ended(data))
 	{
 		elapsed = get_time() - init;
-		if (elapsed >= us)
+		if (elapsed >= ms)
 			break ;
 		usleep(50);
 	}

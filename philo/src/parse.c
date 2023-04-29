@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:21:08 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/28 21:11:00 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 19:27:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static t_args	fill_args(long *arr, int len)
 	t_args	args;
 
 	args.philo_num = (int)arr[0];
-	args.time_to_die = (int)arr[1];
-	args.time_to_eat = (int)arr[2];
-	args.time_to_sleep = (int)arr[3];
+	args.time_to_die = arr[1];
+	args.time_to_eat = arr[2];
+	args.time_to_sleep = arr[3];
 	if (len == 5)
 		args.must_eat_count = (int)arr[4];
 	else

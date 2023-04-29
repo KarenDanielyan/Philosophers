@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:05:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 16:19:55 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:20:03 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,24 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+/* Logic */
+void	launch(t_data *data);
+void	*philo(void *p);
+
 /* Initialization */
-void		new_data(t_data *data, t_args args);
+void	new_data(t_data *data, t_args args);
 
 /* Input Parsing */
-t_args		parse(int ac, char **av);
-int			check_number(const char *s);
+t_args	parse(int ac, char **av);
+int		check_number(const char *s);
+
+/* Event printing */
+void	post(t_data *data, int code);
 
 /* Utils*/
-long		ft_atol(const char *str);
-int			is_ended(t_data *data);
-long long	get_time(void);
+void	ft_msleep(long us, t_data *data);
+long	ft_atol(const char *str);
+int		is_ended(t_data *data);
+long	get_time(void);
 
 #endif

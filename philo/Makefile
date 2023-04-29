@@ -14,7 +14,7 @@ SRCS		=	$(patsubst %.c, $(SRC)/%.c,\
 				utils.c utils_2.c \
 				parse.c parse_2.c \
 				init.c philo.c \
-				main.c)
+				launch.c main.c)
 
 OBJS		=	$(patsubst $(SRC)/%.c, $(BUILD)/%.o, $(SRCS))
 
