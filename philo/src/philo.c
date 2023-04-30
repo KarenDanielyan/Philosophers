@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:13:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 22:43:03 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:08:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	is_ended(t_data *data)
 	pthread_mutex_unlock(&data->end_mux);
 	return (rv);
 }
+
 /**
  * @brief 		Helper function for picking the forks.
  * 
@@ -36,7 +37,8 @@ int	is_ended(t_data *data)
  * WARNING:		Caller function should handle unlocking of mutexes.
  * 				Otherewise, deadlock is immenent.
  */
-static void pick_forks(t_data *data, int numb, pthread_mutex_t *l, pthread_mutex_t *r)
+static void	pick_forks(t_data *data, int numb,
+	pthread_mutex_t *l, pthread_mutex_t *r)
 {
 	pthread_mutex_lock(l);
 	post(data, (numb * 10 + PICKING));
@@ -49,7 +51,7 @@ static void pick_forks(t_data *data, int numb, pthread_mutex_t *l, pthread_mutex
  * 
  * @param philo	Philosopher that wants to eat.
  */
-static void philo_eat(t_philo *philo)
+static void	philo_eat(t_philo *philo)
 {
 	t_data	*data;
 

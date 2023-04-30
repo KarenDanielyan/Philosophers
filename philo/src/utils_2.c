@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 14:57:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 22:20:57 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:08:51 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*pick_msg(int stat)
 		return (THINKING_MSG);
 	return (NULL);
 }
+
 /**
  * @brief	Prints the status of given philosopher
  * 			in STDOUT
@@ -39,10 +40,8 @@ void	post(t_data *data, int code)
 	long	t;
 
 	t = get_time(0);
+	pthread_mutex_lock(&(data->p_mux));
 	if (!is_ended(data))
-	{
-		pthread_mutex_lock(&(data->p_mux));
 		printf("%li %d %s\n", t, (code / 10), pick_msg(code % 10));
-		pthread_mutex_unlock(&(data->p_mux));
-	}
+	pthread_mutex_unlock(&(data->p_mux));
 }

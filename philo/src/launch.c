@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:32:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 22:37:20 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:07:16 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,16 @@ static void	eat_check(t_data *data)
 	{
 		pthread_mutex_lock(&p[i].c_mux);
 		if (p[i].ate_c >= data->nb_2eat)
+		{
+			pthread_mutex_unlock(&p[i].c_mux);
 			i ++;
+		}
 		else
-			break;
-		pthread_mutex_unlock(&p[i].c_mux);
+		{
+			pthread_mutex_unlock(&p[i].c_mux);
+			break ;
+		}
 	}
-	if (i != data->nb_philo)
-		pthread_mutex_unlock(&p[i].c_mux);
 	if (i == data->nb_philo)
 	{
 		pthread_mutex_lock(&(data->end_mux));
@@ -92,12 +95,14 @@ static void	terminate(t_data *data)
 
 void	launch(t_data *data)
 {
-	int	i;
-	
+	int		i;
+	void	*p;
+
 	i = 0;
 	while (i < data->nb_philo)
 	{
-		if (pthread_create(&data->threads[i], NULL, &philo, (void *)(&data->philos[i])))
+		p = (void *)(&data->philos[i]);
+		if (pthread_create(&data->threads[i], NULL, &philo, p))
 		{
 			perror("thread_create");
 			exit(EXIT_FAILURE);
