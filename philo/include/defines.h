@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 22:18:23 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:31:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 # define THINKING_MSG "is thinking"
 # define FORK_MSG "has taken a fork"
 
-typedef struct timeval t_time;
+typedef struct timeval	t_time;
 
 typedef struct s_args
 {
 	int			philo_num;
 	int			must_eat_count;
-	long	time_to_die;
-	long	time_to_sleep;
-	long	time_to_eat;
+	long		time_to_die;
+	long		time_to_sleep;
+	long		time_to_eat;
 }	t_args;
 
 typedef enum e_state
@@ -46,10 +46,10 @@ typedef struct s_philo
 {
 	int				numb;
 	int				ate_c;
-	long		to_sleep;
-	long		to_die;
-	long		to_eat;
-	long		last_meal;
+	long			to_sleep;
+	long			to_die;
+	long			to_eat;
+	long			last_meal;
 	pthread_mutex_t	e_mux;
 	pthread_mutex_t	c_mux;
 	pthread_mutex_t	*left_f;

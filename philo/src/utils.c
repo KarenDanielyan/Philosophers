@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:47:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 22:39:47 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:31:58 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ long	ft_atol(const char *str)
 	}
 	return (sign * num);
 }
+
 /**
  * @brief		Sleeps given amount of miliseconds.
  * 

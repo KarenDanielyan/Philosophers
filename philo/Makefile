@@ -22,7 +22,7 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-g -Wall -Wextra -Werror #-fsanitize=thread
+CFLAGS		=	-Wall -Wextra -Werror # -g -fsanitize=thread
 
 LFLAGS		=	
 
@@ -46,20 +46,20 @@ $(BUILD):
 				@mkdir -p $(BUILD)
 
 $(NAME):	$(BUILD) $(OBJS)
-				@echo	"Building ..."
+				@echo	"${GREEN}Building philo...${RESET}"
 				@$(CC) $(CFLAGS) $(OBJS) $(IFLAGS) $(LFLAGS) -o $(NAME)
-				@echo	"Build Successfull."
+				@echo	"${GREEN}Build Successfull.${RESET}"
 
 clean:
-				@echo "Cleaning Build..."
+				@echo "${YELLOW}Cleaning Build...${RESET}"
 				@$(RM) $(BUILD)
-				@echo "Done."
+				@echo "${YELLOW}Done.${RESET}"
 
-fclean:		clean
-				@echo "Cleaning Everyting..."
+fclean:
+				@echo "${RED}Cleaning Everyting...${RESET}"
+				@$(RM) $(BUILD)
 				@$(RM) $(NAME)
-				@$(RM) $(BONUS)
-				@echo "Done."
+				@echo "${RED}Done.${RESET}"
 
 re:			fclean $(NAME)
 
