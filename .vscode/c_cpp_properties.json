@@ -3,7 +3,8 @@
         {
             "name": "linux-gcc-x64",
             "includePath": [
-                "${workspaceFolder}/philo/include"
+                "${workspaceFolder}/philo/include",
+                "${workspaceFolder}/philo_bonus/include"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c99",
@@ -13,7 +14,8 @@
         {
             "name": "macos-clang-x64",
             "includePath": [
-                "${workspaceFolder}/philo/include"
+                "${workspaceFolder}/philo/include",
+                "${workspaceFolder}/philo_bonus/include"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c99",

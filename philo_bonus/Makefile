@@ -22,9 +22,9 @@ CC			=	cc
 
 RM			=	rm -rf
 
-CFLAGS		=	-Wall -Wextra -Werror # -g -fsanitize=thread
+CFLAGS		=	-Wall -Wextra -Werror #-g #-fsanitize=address
 
-LFLAGS		=	
+LFLAGS		=	-lpthread
 
 IFLAGS		=	-I./include
 

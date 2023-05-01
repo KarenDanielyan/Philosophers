@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:22:56 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 21:36:18 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:26:24 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,16 @@ void	new_data(t_data *data, t_args args)
 		perror("malloc()");
 		exit(EXIT_FAILURE);
 	}
-	data->forks = sem_open(FORK_SEM_NAME, O_CREAT | O_RDWR, 0666, data->nb_philo);
-	data->p_sem = sem_open(PRINT_SEM_NAME, O_CREAT | O_RDWR, 0666, 1);
-	data->c_sem = sem_open(MEAL_SEM_NAME, O_CREAT | O_RDWR, 0666, 1);
-	data->m_sem = sem_open(MCOUNT_SEM_NAME, O_CREAT | O_RDWR, 0666, 1);
+	sem_unlink(FORK_SEM_NAME);
+	sem_unlink(MEAL_SEM_NAME);
+	sem_unlink(PRINT_SEM_NAME);
+	sem_unlink(MCOUNT_SEM_NAME);	
+	data->forks = sem_open(FORK_SEM_NAME, O_CREAT, S_IRWXU, data->nb_philo);
+	data->p_sem = sem_open(PRINT_SEM_NAME, O_CREAT, S_IRWXU, 1);
+	data->c_sem = sem_open(MEAL_SEM_NAME, O_CREAT, S_IRWXU, 1);
+	data->m_sem = sem_open(MCOUNT_SEM_NAME, O_CREAT, S_IRWXU, 1);
 	if (data->p_sem == SEM_FAILED || data->c_sem == SEM_FAILED
-		|| data->e_sem == SEM_FAILED || data->forks == SEM_FAILED)
+		|| data->forks == SEM_FAILED)
 	{
 		perror("sem_open()");
 		exit(EXIT_FAILURE);

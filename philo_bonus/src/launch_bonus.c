@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:32:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 21:40:21 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:25:16 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	terminate(t_data *data)
 	int	rv;
 
 	i = 0;
+	rv = 0;
 	while (i < data->nb_philo)
 	{
 		waitpid(-1, &rv, 0);
@@ -61,7 +62,11 @@ void	launch(t_data *data)
 			exit(EXIT_FAILURE);
 		}
 		if (data->pid_s[i] == 0)
-			philo((void *)(data->philos + i));
+		{
+			dprintf(2, "Starting philo %i\n", i);
+			philo((void *)(&data->philos[i]));
+		}
+		usleep(100);
 	}
 	terminate(data);
 }

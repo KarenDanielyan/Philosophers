@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 21:36:13 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:19:35 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ typedef struct s_philo
  */
 typedef struct s_data
 {
+	int			is_ended;
 	int			nb_philo;
 	int			*pid_s;
 	sem_t		*m_sem;
-	sem_t		*e_sem;
 	sem_t		*c_sem;
 	sem_t		*p_sem;
 	sem_t		*forks;

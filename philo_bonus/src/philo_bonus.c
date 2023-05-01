@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:13:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 21:57:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/01 22:28:40 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	philo(void *p)
 
 	get_time(42);
 	philo = (t_philo *)p;
-	pthread_create(&philo->end_check, NULL, p, &check_end);
+	pthread_create(&philo->end_check, NULL, check_end, p);
 	if (philo->numb % 2 == 0)
 		usleep(1000);
 	while (42)
