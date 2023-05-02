@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 22:19:35 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:00:39 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,7 @@ typedef enum e_state
  * @brief Structure describing my philosophers
  * 
  * @param numb			Philosophers index,
- * @param nb_2eat		Number of time philo must eat to finish simulation,
  * @param ate_c			Number of times philo ate,
- * @param to_sleep		Time it takes for philo to sleep,
- * @param to_die		Amount of time philo can starve, if he does not it during
- * @param to_eat		Time it takes for philo to eat,
  * @param last_meal		Timestamp of last time philo ate,
  * @param data			Pointer to the structure that contains names semaphore,
  * @param end_check		Dedicated thread to check whether philo died or not.
@@ -65,12 +61,8 @@ typedef enum e_state
 typedef struct s_philo
 {
 	int				numb;
-	int				nb_2eat;
 	int				ate_c;
-	long			to_sleep;
-	long			to_die;
-	long			to_eat;
-	long			last_meal;
+	long long		last_meal;
 	struct s_data	*data;
 	pthread_t		end_check;
 }	t_philo;
@@ -79,8 +71,14 @@ typedef struct s_philo
  * @brief	Structure describing the state of my simulation.
  * 
  * @param	is_ended	Shows whether simulation ended for given philo or not,
- * @param	nb_phil		Number of philosophers participating in simulation,
+ * @param	nb_philo	Number of philosophers participating in simulation,
+ * @param	nb_2eat		Number of time philo must eat to finish simulation,
+ * @param	to_sleep	Time it takes for philo to sleep,
+ * @param	to_die		Amount of time philo can starve, if he does not eat
+ * 						before to_die time passes, philosopher dies.
+ * @param	to_eat		Time it takes for philo to eat,
  * @param	pid_s		Array conteining process id's of philos,
+ * @param	d_sem		Binary semaphore protecting is_dead state,
  * @param	p_sem		Binary semaphore protecting against scrambled view,
  * @param	c_sem		Binary semaphore protecting ate_c state,
  * @param	m_sem		Binary semaphore protecting last_meal time,
@@ -89,9 +87,14 @@ typedef struct s_philo
  */
 typedef struct s_data
 {
-	int			is_ended;
+	int			is_dead;
 	int			nb_philo;
+	int			nb_2eat;
+	int			to_sleep;
+	int			to_die;
+	int			to_eat;
 	int			*pid_s;
+	sem_t		*d_sem;
 	sem_t		*m_sem;
 	sem_t		*c_sem;
 	sem_t		*p_sem;
