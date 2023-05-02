@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:32:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 22:25:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:23:12 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 static void	close_sems(t_data *data)
 {
 	sem_close(data->forks);
+	sem_close(data->d_sem);
 	sem_close(data->c_sem);
 	sem_close(data->p_sem);
-	sem_close(data->m_sem);
+	sem_close(data->t_sem);
 	sem_unlink(FORK_SEM_NAME);
+	sem_unlink(DEAD_SEM_NAME);
 	sem_unlink(MEAL_SEM_NAME);
 	sem_unlink(PRINT_SEM_NAME);
-	sem_unlink(MCOUNT_SEM_NAME);	
+	sem_unlink(MCOUNT_SEM_NAME);
 }
 
 void	terminate(t_data *data)
@@ -30,7 +32,6 @@ void	terminate(t_data *data)
 	int	rv;
 
 	i = 0;
-	rv = 0;
 	while (i < data->nb_philo)
 	{
 		waitpid(-1, &rv, 0);
@@ -38,7 +39,7 @@ void	terminate(t_data *data)
 		{
 			i = -1;
 			while (++i < data->nb_philo)
-				kill(data->pid_s[i], SIGKILL);
+				kill(data->philos[i].pid, SIGKILL);
 			break ;
 		}
 		i ++;
@@ -55,18 +56,14 @@ void	launch(t_data *data)
 	p = data->philos;
 	while (++i < data->nb_philo)
 	{
-		data->pid_s[i] = fork();
-		if (data->pid_s[i] == -1)
+		(p + i)->pid = fork();
+		if ((p + i)->pid == -1)
 		{
 			perror("fork()");
 			exit(EXIT_FAILURE);
 		}
-		if (data->pid_s[i] == 0)
-		{
-			dprintf(2, "Starting philo %i\n", i);
-			philo((void *)(&data->philos[i]));
-		}
-		usleep(100);
+		if ((p + i)->pid == 0)
+			philo((void *)(p + i));
 	}
 	terminate(data);
 }
