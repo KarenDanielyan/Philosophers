@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 13:03:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:10:11 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 
 # define FORK_SEM_NAME	"/philo_forks"
 # define PRINT_SEM_NAME	"/philo_print"
-# define MEAL_SEM_NAME	"/philo_meal"
+# define MEAL_SEM_NAME	"/philo_mealtime"
 # define DEAD_SEM_NAME	"/philo_dead"
-# define MCOUNT_SEM_NAME "/philo_mcount"
+# define MCOUNT_SEM_NAME "/philo_mealcount"
 
 typedef struct timeval	t_time;
 
@@ -82,7 +82,7 @@ typedef struct s_philo
  * @param	d_sem		Binary semaphore protecting is_dead state,
  * @param	p_sem		Binary semaphore protecting against scrambled view,
  * @param	c_sem		Binary semaphore protecting ate_c state,
- * @param	m_sem		Binary semaphore protecting last_meal time,
+ * @param	t_sem		Binary semaphore protecting last_meal time,
  * @param	forks		Counting semaphore representing available forks,
  * @param	philos		Array of philosophers.
  */
