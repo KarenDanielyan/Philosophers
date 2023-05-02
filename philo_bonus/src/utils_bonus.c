@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:47:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 14:15:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:05:49 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 #define OFFSET '0'
 
-long	get_time(int c)
+long long	get_time(t_data *data)
 {
-	static t_time	init;
 	t_time			t;
 
-	if (c == 42)
-		gettimeofday(&init, NULL);
 	gettimeofday(&t, NULL);
-	t.tv_sec = t.tv_sec - init.tv_sec;
-	t.tv_usec = t.tv_usec - init.tv_usec;
-	return ((long)((t.tv_sec * 1000) + (t.tv_usec / 1000)));
+	return ((long long)(t.tv_sec * 1000 + t.tv_usec / 1000 - data->start_t));
 }
 
 static short	is_num(const char *chr)
@@ -90,11 +85,11 @@ void	ft_msleep(long ms, t_data *data)
 	long	init;
 	long	elapsed;
 
-	init = get_time(0);
+	init = get_time(data);
 	elapsed = 0;
 	while (!is_dead(data))
 	{
-		elapsed = get_time(0) - init;
+		elapsed = get_time(data) - init;
 		if (elapsed >= ms)
 			break ;
 		usleep(50);

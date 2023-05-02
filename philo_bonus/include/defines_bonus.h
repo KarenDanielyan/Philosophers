@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 14:04:51 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:03:18 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_data
 	int			to_sleep;
 	int			to_die;
 	int			to_eat;
+	long long	start_t;
 	sem_t		*d_sem;
 	sem_t		*t_sem;
 	sem_t		*c_sem;

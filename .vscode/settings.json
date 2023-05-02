@@ -69,7 +69,9 @@
     "defines.h": "c",
     "types.h": "c",
     "_types.h": "c",
-    "philo_bonus.h": "c"
+    "philo_bonus.h": "c",
+    "defines_bonus.h": "c",
+    "semaphore.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

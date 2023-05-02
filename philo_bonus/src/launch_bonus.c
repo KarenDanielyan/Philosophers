@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:32:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 14:19:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:51:31 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ void	launch(t_data *data)
 			exit(EXIT_FAILURE);
 		}
 		if ((p + i)->pid == 0)
-		{
-			dprintf(2, "philo %d began execution.\n", i);
 			philo((void *)(p + i));
-		}
 	}
 	terminate(data);
 }
