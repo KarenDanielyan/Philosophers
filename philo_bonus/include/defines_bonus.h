@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 13:00:39 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:03:39 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef enum e_state
  */
 typedef struct s_philo
 {
+	pid_t			pid;
 	int				numb;
 	int				ate_c;
 	long long		last_meal;
@@ -93,7 +94,6 @@ typedef struct s_data
 	int			to_sleep;
 	int			to_die;
 	int			to_eat;
-	int			*pid_s;
 	sem_t		*d_sem;
 	sem_t		*m_sem;
 	sem_t		*c_sem;

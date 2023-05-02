@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:22:56 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 22:26:24 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:02:27 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static t_philo	*philo_init(t_data *data, t_args args)
 
 void	new_data(t_data *data, t_args args)
 {
-	data->nb_philo = args.philo_num;
 	data->pid_s = (int *)malloc(args.philo_num * sizeof(int));
 	if (data->pid_s == NULL)
 	{
