@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:47:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 21:41:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:15:37 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,16 @@ long	ft_atol(const char *str)
  * @brief		Sleeps given amount of miliseconds.
  * 
  * @param ms	miliseconds
+ * @param data	Simulation data structure.
  */
-void	ft_msleep(long ms)
+void	ft_msleep(long ms, t_data *data)
 {
 	long	init;
 	long	elapsed;
 
 	init = get_time(0);
 	elapsed = 0;
-	while (1)
+	while (!is_dead(data))
 	{
 		elapsed = get_time(0) - init;
 		if (elapsed >= ms)

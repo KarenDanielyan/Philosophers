@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 13:10:11 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:04:51 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef enum e_state
  * @param ate_c			Number of times philo ate,
  * @param last_meal		Timestamp of last time philo ate,
  * @param data			Pointer to the structure that contains names semaphore,
- * @param end_check		Dedicated thread to check whether philo died or not.
+ * @param death_check	Dedicated thread to check whether philo died or not.
  */
 typedef struct s_philo
 {
@@ -65,7 +65,7 @@ typedef struct s_philo
 	int				ate_c;
 	long long		last_meal;
 	struct s_data	*data;
-	pthread_t		end_check;
+	pthread_t		death_check;
 }	t_philo;
 
 /**
@@ -95,7 +95,7 @@ typedef struct s_data
 	int			to_die;
 	int			to_eat;
 	sem_t		*d_sem;
-	sem_t		*m_sem;
+	sem_t		*t_sem;
 	sem_t		*c_sem;
 	sem_t		*p_sem;
 	sem_t		*forks;

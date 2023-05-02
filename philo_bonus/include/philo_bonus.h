@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:05:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/01 21:41:40 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:15:35 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int		check_number(const char *s);
 void	post(t_data *data, int code);
 
 /* Utils*/
-void	ft_msleep(long us);
+void	ft_msleep(long ms, t_data *data);
 long	ft_atol(const char *str);
-int		is_ended(t_data *data);
+int		is_dead(t_data *data);
 long	get_time(int c);
 
 #endif

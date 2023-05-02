@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:10:29 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 13:04:36 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:16:05 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 
 	args = parse(ac, av);
 	new_data(&data, args);
-	// launch(&data);
+	launch(&data);
 	printf("Great success\n");
 	return (0);
 }
