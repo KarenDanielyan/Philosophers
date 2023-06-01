@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:32:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/30 14:07:16 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:01:36 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	terminate(t_data *data)
 	pthread_mutex_destroy(&data->p_mux);
 }
 
-void	launch(t_data *data)
+int	launch(t_data *data)
 {
 	int		i;
 	void	*p;
@@ -105,10 +105,11 @@ void	launch(t_data *data)
 		if (pthread_create(&data->threads[i], NULL, &philo, p))
 		{
 			perror("thread_create");
-			exit(EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		}
 		i ++;
 	}
 	check_end(data);
 	terminate(data);
+	return (EXIT_SUCCESS);
 }

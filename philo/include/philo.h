@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:05:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 21:09:37 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:01:58 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 
 /* Logic */
-void	launch(t_data *data);
+int		launch(t_data *data);
 void	*philo(void *p);
 
 /* Initialization */

@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:21:08 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/04/29 19:27:32 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:00:46 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ static t_args	fill_args(long *arr, int len)
 	return (args);
 }
 
-static void	pick_err_msg(long *arr, int i, char **av, int ac)
+static int	pick_err_msg(long *arr, int i, char **av, int ac)
 {
 	if (!is_number(av[i]))
 	{
 		write(STDERR_FILENO, MNAI, MNAI_LEN);
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 	arr[i - 1] = ft_atol(av[i]);
 	if (!check_number(av[i]) || arr[i - 1] > INT32_MAX)
 	{
 		write(STDERR_FILENO, M2BIG, M2BIG_LEN);
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 	if (arr[i - 1] < 0)
 	{
@@ -74,20 +74,23 @@ static void	pick_err_msg(long *arr, int i, char **av, int ac)
 			write(STDERR_FILENO, MNEG, MNEG_LEN);
 		else
 			write(STDERR_FILENO, MTHUP, MTHUP_LEN);
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
 }
 
-static void	arg_fill(long *arr, int ac, char **av)
+static int	arg_fill(long *arr, int ac, char **av)
 {
 	int	i;
 
 	i = 1;
 	while (i < ac)
 	{
-		pick_err_msg(arr, i, av, ac);
+		if (pick_err_msg(arr, i, av, ac) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
 		i ++;
 	}
+	return (EXIT_SUCCESS);
 }
 
 t_args	parse(int ac, char **av)
@@ -96,13 +99,15 @@ t_args	parse(int ac, char **av)
 	t_args	args;
 
 	arr = NULL;
+	args.philo_num = -42;
 	if (ac != 5 && ac != 6)
 	{
 		write(STDERR_FILENO, MINARG, MINARG_LEN);
-		exit(EXIT_FAILURE);
+		return (args);
 	}
 	arr = (long *)malloc((ac - 1) * sizeof(long));
-	arg_fill(arr, ac, av);
+	if (arg_fill(arr, ac, av) == EXIT_FAILURE)
+		return (args);
 	args = fill_args(arr, (ac - 1));
 	free(arr);
 	return (args);
