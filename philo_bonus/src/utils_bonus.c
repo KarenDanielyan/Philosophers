@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:47:39 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 15:05:49 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:20:41 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_msleep(long ms, t_data *data)
 
 	init = get_time(data);
 	elapsed = 0;
-	while (!is_dead(data))
+	while (42)
 	{
 		elapsed = get_time(data) - init;
 		if (elapsed >= ms)

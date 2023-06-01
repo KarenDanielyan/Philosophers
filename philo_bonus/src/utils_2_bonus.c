@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 14:57:01 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 15:16:48 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:20:32 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	post(t_data *data, int code)
 
 	t = get_time(data);
 	sem_wait(data->p_sem);
-	if (!is_dead(data))
-		printf("%li %d %s\n", t, (code / 10), pick_msg(code % 10));
+	printf("%li %d %s\n", t, (code / 10), pick_msg(code % 10));
 	sem_post(data->p_sem);
 }

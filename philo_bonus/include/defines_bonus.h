@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:44:03 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 15:03:18 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:42:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define FORK_SEM_NAME	"/philo_forks"
 # define PRINT_SEM_NAME	"/philo_print"
 # define MEAL_SEM_NAME	"/philo_mealtime"
-# define DEAD_SEM_NAME	"/philo_dead"
 # define MCOUNT_SEM_NAME "/philo_mealcount"
 
 typedef struct timeval	t_time;
@@ -71,7 +70,6 @@ typedef struct s_philo
 /**
  * @brief	Structure describing the state of my simulation.
  * 
- * @param	is_ended	Shows whether simulation ended for given philo or not,
  * @param	nb_philo	Number of philosophers participating in simulation,
  * @param	nb_2eat		Number of time philo must eat to finish simulation,
  * @param	to_sleep	Time it takes for philo to sleep,
@@ -79,7 +77,6 @@ typedef struct s_philo
  * 						before to_die time passes, philosopher dies.
  * @param	to_eat		Time it takes for philo to eat,
  * @param	pid_s		Array conteining process id's of philos,
- * @param	d_sem		Binary semaphore protecting is_dead state,
  * @param	p_sem		Binary semaphore protecting against scrambled view,
  * @param	c_sem		Binary semaphore protecting ate_c state,
  * @param	t_sem		Binary semaphore protecting last_meal time,
@@ -88,14 +85,12 @@ typedef struct s_philo
  */
 typedef struct s_data
 {
-	int			is_dead;
 	int			nb_philo;
 	int			nb_2eat;
 	int			to_sleep;
 	int			to_die;
 	int			to_eat;
 	long long	start_t;
-	sem_t		*d_sem;
 	sem_t		*t_sem;
 	sem_t		*c_sem;
 	sem_t		*p_sem;

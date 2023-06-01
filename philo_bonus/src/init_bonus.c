@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 20:22:56 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 14:31:41 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:44:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,12 @@ static void	init_sem(t_data *data)
 	sem_unlink(MEAL_SEM_NAME);
 	sem_unlink(PRINT_SEM_NAME);
 	sem_unlink(MCOUNT_SEM_NAME);
-	sem_unlink(DEAD_SEM_NAME);
 	data->forks = sem_open(FORK_SEM_NAME, O_CREAT, S_IRWXU, data->nb_philo);
-	data->d_sem = sem_open(DEAD_SEM_NAME, O_CREAT, S_IRWXU, 1);
 	data->p_sem = sem_open(PRINT_SEM_NAME, O_CREAT, S_IRWXU, 1);
 	data->t_sem = sem_open(MEAL_SEM_NAME, O_CREAT, S_IRWXU, 1);
 	data->c_sem = sem_open(MCOUNT_SEM_NAME, O_CREAT, S_IRWXU, 1);
 	if (data->p_sem == SEM_FAILED || data->c_sem == SEM_FAILED
-		|| data->d_sem == SEM_FAILED || data->t_sem == SEM_FAILED
-		|| data->forks == SEM_FAILED)
+		|| data->t_sem == SEM_FAILED || data->forks == SEM_FAILED)
 	{
 		perror("sem_open()");
 		exit(EXIT_FAILURE);
@@ -58,7 +55,6 @@ static void	init_sem(t_data *data)
 
 void	new_data(t_data *data, t_args args)
 {
-	data->is_dead = 0;
 	data->nb_philo = args.philo_num;
 	data->to_die = args.time_to_die;
 	data->to_eat = args.time_to_eat;

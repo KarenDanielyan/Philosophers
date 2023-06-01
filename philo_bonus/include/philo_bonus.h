@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 19:05:42 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 15:05:17 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:20:48 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void		post(t_data *data, int code);
 /* Utils*/
 void		ft_msleep(long ms, t_data *data);
 long		ft_atol(const char *str);
-int			is_dead(t_data *data);
 long long	get_time(t_data *data);
 
 #endif

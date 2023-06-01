@@ -6,27 +6,11 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:13:17 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 15:15:26 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:20:59 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
-/**
- * @brief			Safely checks whether simulation is stopped.
- * 
- * @param	data	Data structure describing state of the simulation.
- * @return	int		0 - Not stopped, 1 - Stopped
- */
-int	is_dead(t_data *data)
-{
-	int	rv;
-
-	sem_wait(data->d_sem);
-	rv = data->is_dead;
-	sem_post(data->d_sem);
-	return (rv);
-}
 
 static void	philo_eat(t_philo *philo)
 {

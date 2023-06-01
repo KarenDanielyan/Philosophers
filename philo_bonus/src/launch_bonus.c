@@ -6,7 +6,7 @@
 /*   By: kdaniely <kdaniely@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 21:32:13 by kdaniely          #+#    #+#             */
-/*   Updated: 2023/05/02 14:51:31 by kdaniely         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:42:13 by kdaniely         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 static void	close_sems(t_data *data)
 {
 	sem_close(data->forks);
-	sem_close(data->d_sem);
 	sem_close(data->c_sem);
 	sem_close(data->p_sem);
 	sem_close(data->t_sem);
 	sem_unlink(FORK_SEM_NAME);
-	sem_unlink(DEAD_SEM_NAME);
 	sem_unlink(MEAL_SEM_NAME);
 	sem_unlink(PRINT_SEM_NAME);
 	sem_unlink(MCOUNT_SEM_NAME);
