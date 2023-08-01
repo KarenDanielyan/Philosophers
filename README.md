@@ -16,4 +16,4 @@ To test the project, go to one of the folders `philo` or `philo_bonus`, and call
 
 **Usage**: `./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> <number_of_times_philosophers_should_eat>*`
 
-* - last argument is optional and is not required to execute the project.
+`*` - last argument is optional and is not required to execute the project.
